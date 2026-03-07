@@ -3,15 +3,15 @@ from selenium.webdriver.common.by import By
 
 class LoginPageLocators:
     LOGIN_FIELD = (By.ID, 'field_email')
-    LOGIN_BUTTON = (By.XPATH, '//*[@id="tabpanel-login-243955410"]/vkid-form-adapter/div/div/div/div[1]/form/button')
+    LOGIN_BUTTON = (By.XPATH, '//button[text()="Войти"]')
     LOGIN_PASSWORD = (By.ID, 'field_password')
-    LOGIN_BUTTON_QR = (By.XPATH, '//*[@id="tabpanel-login-2075072712"]/vkid-form-adapter/div/div/div/div[1]/button/span')
-    LOGIN_BUTTON_1 = (By.XPATH, '//*[@id="tabpanel-login-2075072712"]/vkid-form-adapter/div/div/div/div[1]/span/button')
-    LOGIN_BUTTON_2 = (By.XPATH, '//*[@id="tabpanel-login-2075072712"]/vkid-form-adapter/div/div/div/div[3]/button/span')
-    LOGIN_BUTTON_VK = (By.XPATH, '//*[@id="tabpanel-login-2075072712"]/vkid-form-adapter/div/div/div/div[3]/div[4]/ui-part/div/a[1]/i')
-    LOGIN_BUTTON_MAIL = (By.XPATH, '//*[@id="tabpanel-login-2075072712"]/vkid-form-adapter/div/div/div/div[3]/div[4]/ui-part/div/a[1]/i')
-    LOGIN_BUTTON_YANDEX = (By.XPATH, '//*[@id="tabpanel-login-2075072712"]/vkid-form-adapter/div/div/div/div[3]/div[4]/ui-part/div/a[3]/i')
-    ERROR_TEXT = (By.XPATH, '//*[@id="tabpanel-login-5565835368"]/vkid-form-adapter/div/div/div/div[1]/form/div[2]/span[2]')
+    LOGIN_BUTTON_QR = (By.XPATH, '//*[@data-l="t,loginQr"]')
+    LOGIN_BUTTON_1 = (By.XPATH, '//*[(text(), "Не получается войти")]')
+    LOGIN_BUTTON_2 = (By.XPATH, '//*[(text(), "Зарегистрироваться")]')
+    LOGIN_BUTTON_VK = (By.XPATH, '//*[@data-l="t,vkc"]')
+    LOGIN_BUTTON_MAIL = (By.XPATH, '//*[@data-l="t,mailru"]')
+    LOGIN_BUTTON_YANDEX = (By.XPATH, '//*[@data-l="t,yandex"]')
+    ERROR_TEXT = (By.XPATH, '//*[(text(), "Введите логин") or (text(), "Введите пароль")]')
 
 
 class LoginPageHelper(BasePage):

@@ -1,6 +1,7 @@
 from core.BaseTest import browser
 from pages.BasePage import BasePage
 from pages.LoginPage import LoginPageHelper
+import time
 
 BASE_URL = 'https://ok.ru/'
 EMPTY_LOGIN_ERROR = 'Введите логин'
@@ -16,6 +17,7 @@ def test_empty_login_and_password(browser):
 
 def test_login_and_empty_password(browser):
     BasePage(browser).get_url(BASE_URL)
+    time.sleep(5)
     LoginPage = LoginPageHelper(browser)
     LoginPage.login_entry(LOGIN)
     LoginPage.click_login()
