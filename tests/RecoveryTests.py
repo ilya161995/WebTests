@@ -1,3 +1,5 @@
+import time
+
 import allure
 from core.BaseTest import browser
 from pages.BasePage import BasePage
@@ -5,7 +7,7 @@ from pages.LoginPage import LoginPageHelper
 from pages.RecoveryPage import RecoveryPageHelper
 
 BASE_URL = 'https://ok.ru/'
-LOGIN = 'test@gmail.com'
+LOGIN = 'test567@gmail.com'
 PASSWORD = '1'
 
 @allure.suite('Проверка восстановления пользователя')
@@ -18,6 +20,7 @@ def test_go_to_recovery_after_many_fails(browser):
     for i in range(3):
         LoginPage.type_password(PASSWORD)
         LoginPage.click_login()
+        time.sleep(3)
 
     LoginPage.click_recovery()
     RecoveryPageHelper(browser)
