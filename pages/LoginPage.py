@@ -5,7 +5,7 @@ import allure
 class LoginPageLocators:
     LOGIN_FIELD = (By.ID, 'field_email')
     LOGIN_BUTTON = (By.XPATH, '//*[@label="Войти"]')
-    LOGIN_PASSWORD = (By.ID, 'field_password')
+    PASSWORD_FIELD = (By.ID, 'field_password')
     LOGIN_BUTTON_QR = (By.XPATH, '//*[@label="Войти по QR-коду"]')
     RESTORE_LINK = (By.XPATH, '//*[@aria-label="Не получается войти?"]')
     REGISTRATION_BUTTON = (By.XPATH, '//span[text()="Зарегистрироваться"]')
@@ -13,6 +13,8 @@ class LoginPageLocators:
     LOGIN_BUTTON_MAIL = (By.XPATH, '//*[@data-l="t,mailru"]')
     LOGIN_BUTTON_YANDEX = (By.XPATH, '//*[@data-l="t,yandex"]')
     ERROR_TEXT = (By.XPATH, '//*[text()="Введите логин" or text()="Введите пароль"]')
+    RECOVER_ACCOUNT = (By.XPATH, '//span[text()="Восстановить"]')
+    GO_BACK_BUTTON = (By.XPATH, '//span[text()="Отмена"]')
 
 
 class LoginPageHelper(BasePage):
@@ -22,9 +24,11 @@ class LoginPageHelper(BasePage):
 
 
     def check_page(self):
+        with allure.step('Проверяем корректность загрузки страницы'):
+            self.attach_screenshot()
         self.find_element(LoginPageLocators.LOGIN_FIELD)
         self.find_element(LoginPageLocators.LOGIN_BUTTON)
-        self.find_element(LoginPageLocators.LOGIN_PASSWORD)
+        self.find_element(LoginPageLocators.PASSWORD_FIELD)
         self.find_element(LoginPageLocators.LOGIN_BUTTON_QR)
         self.find_element(LoginPageLocators.RESTORE_LINK)
         self.find_element(LoginPageLocators.REGISTRATION_BUTTON)
@@ -34,8 +38,8 @@ class LoginPageHelper(BasePage):
 
     @allure.step('Вводим логин')
     def login_entry(self, LOGIN):
-        self.attach_screenshot()
         self.find_element(LoginPageLocators.LOGIN_FIELD).send_keys(LOGIN)
+        self.attach_screenshot()
 
 
     @allure.step('Нажимаем на кнопку "Войти"')
@@ -48,3 +52,14 @@ class LoginPageHelper(BasePage):
     def get_error_text(self):
         self.attach_screenshot()
         return self.find_element(LoginPageLocators.ERROR_TEXT).text
+
+    @allure.step('Заполняем поле пароль')
+    def type_password(self, password):
+        self.find_element(LoginPageLocators.PASSWORD_FIELD).send_keys(password)
+        self.attach_screenshot()
+
+    @allure.step('Переходим к восстановлению')
+    def click_recovery(self):
+        self.attach_screenshot()
+        self.find_element(LoginPageLocators.RECOVER_ACCOUNT).click()
+
